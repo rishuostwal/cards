@@ -39,10 +39,8 @@ defmodule Cards.Game do
   end
 
   def get_winner_card(hand) do
-    hand
-      |> length
-      |> (fn (len) -> Enum.random(0..len) - 1 end).()
-      |> (fn (rand) -> Enum.at(hand, rand) end).()
+    winner_index = Range.new(0, length(hand)) |> Enum.random
+    Enum.at(hand, winner_index)
   end
 
   def format_hand(hand) do
