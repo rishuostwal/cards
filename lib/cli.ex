@@ -1,10 +1,6 @@
 defmodule Cards.CLI do
 	def main(_args) do
-		IO.puts "Generated cards: "
-		cards = Cards.create_deck
-
-		for card <- cards do
-			IO.puts "#{card}"
-		end
+		{hand, deck} = Cards.create_hand(5)
+		Cards.Game.game(hand)
 	end
 end

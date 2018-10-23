@@ -11,7 +11,8 @@ defmodule Cards do
     suits = ["Spades", "Clubs", "Hearts", "Diamonds"]
 
     for suit <- suits, value <- values do
-      "#{value} of #{suit}"
+      name = "#{value} of #{suit}"
+      %{ name: name , code: :"#{encode_name(name)}"}
     end
   end
 
@@ -56,5 +57,12 @@ defmodule Cards do
     Cards.create_deck
       |> Cards.shuffle
       |> Cards.deal(hand_size)
+  end
+
+  defp encode_name(name) do
+    String.split(name)
+      |> Enum.map(&Macro.camelize/1)
+      |> Enum.join
+      |> Macro.underscore
   end
 end
