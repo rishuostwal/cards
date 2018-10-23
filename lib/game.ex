@@ -39,7 +39,7 @@ defmodule Cards.Game do
   end
 
   def get_winner_card(hand) do
-    winner_index = Range.new(0, length(hand)) |> Enum.random
+    winner_index = Range.new(0, length(hand) - 1) |> Enum.random
     Enum.at(hand, winner_index)
   end
 
