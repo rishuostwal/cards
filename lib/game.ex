@@ -6,13 +6,13 @@ defmodule Cards.Game do
       |> Integer.parse
       |> case do
         {choice,  _} -> choice - 1
-        :error -> 0
+        :error -> -1
       end
 
     decide_winner(choice, hand)
   end
 
-  def decide_winner(choice, hand) when choice > 0 do
+  def decide_winner(choice, hand) when choice >= 0 do
     winner_card = get_winner_card(hand)
     user_choice = case Enum.at(hand, choice) do
       %{name: name} -> name
@@ -33,7 +33,7 @@ defmodule Cards.Game do
     """
   end
   
-  def decide_winner(choice, hand) when choice === 0 do
+  def decide_winner(choice, hand) when choice < 0 do
     IO.puts "Choose a valid option"
     game(hand)
   end
