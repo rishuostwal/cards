@@ -77,7 +77,7 @@ defmodule Cards.Game do
   @doc """
   Generates the winner card
   """
-  defp get_winner_card(hand) do
+  def get_winner_card(hand) do
     winner_index = Range.new(0, length(hand) - 1) |> Enum.random
     Enum.at(hand, winner_index)
   end
@@ -85,7 +85,7 @@ defmodule Cards.Game do
   @doc """
   Format the string containing hand cards
   """
-  def format_hand(hand) do
+  defp format_hand(hand) do
     hand
       |> Enum.with_index
       |> Enum.map(fn {card, i} -> "#{i+1} - #{card.name} \n" end)
